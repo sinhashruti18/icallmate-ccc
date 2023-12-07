@@ -859,7 +859,7 @@ class _ManageCallPageState extends State<ManageCallPage> {
                           //   dateTime = da.add(Duration(days: 1)).toString();
                           // });
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.arrow_forward,
                           color: Colors.grey,
                         ),
@@ -867,14 +867,14 @@ class _ManageCallPageState extends State<ManageCallPage> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
                     children: [
-                      Expanded(
+                      const Expanded(
                         child: Text(
                           "Camapaign",
                           style: TextStyle(
@@ -999,7 +999,7 @@ class _ManageCallPageState extends State<ManageCallPage> {
                       // SizedBox(
                       //   width: 10,
                       // ),
-                      Text(
+                      const Text(
                         'Show Undialed Only',
                         style: TextStyle(
                           fontSize: 14.0,
@@ -1035,19 +1035,19 @@ class _ManageCallPageState extends State<ManageCallPage> {
                               width: 100,
                               decoration: BoxDecoration(
                                   color: isautodiallead == true
-                                      ? Color.fromARGB(255, 228, 67, 27)
+                                      ? const Color.fromARGB(255, 228, 67, 27)
                                       : Colors.grey,
                                   borderRadius: BorderRadius.circular(20)),
                               child: Center(
                                 child: check_btn == false
-                                    ? Text(
+                                    ? const Text(
                                         "START",
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 14),
                                       )
-                                    : Text(
+                                    : const Text(
                                         "STOP",
                                         style: TextStyle(
                                             color: Colors.white,
@@ -1070,7 +1070,7 @@ class _ManageCallPageState extends State<ManageCallPage> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 selected != null
@@ -1092,7 +1092,7 @@ class _ManageCallPageState extends State<ManageCallPage> {
                                             headingRowColor:
                                                 MaterialStateColor.resolveWith(
                                               (states) {
-                                                return Color(0xffAAAAAA);
+                                                return const Color(0xffAAAAAA);
 
                                                 //  Color.fromARGB(
                                                 //     255, 5, 1, 39);

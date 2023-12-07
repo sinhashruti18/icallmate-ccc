@@ -37,7 +37,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
             hintText: "",
             controller: widget.serverip_controller,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           MyText(text: "Port"),
@@ -45,7 +45,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
             hintText: "",
             controller: widget.serverport_controller,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           MyText(text: "Package Name"),
@@ -53,7 +53,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
             hintText: "",
             controller: widget.serverpackage_controller,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
         ]),

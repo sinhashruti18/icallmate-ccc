@@ -4,8 +4,6 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:ccc_app/pages/crm.dart';
-import 'package:ccc_app/pages/dyna_form.dart';
 import 'package:ccc_app/pages/home_page.dart';
 import 'package:ccc_app/pages/login_pages.dart';
 import 'package:ccc_app/service/healthcheck_api.dart';
@@ -20,7 +18,6 @@ import 'package:flutter_background_service_android/flutter_background_service_an
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
@@ -318,7 +315,6 @@ class _MyAppState extends State<MyApp> {
 
   Timer? timer;
 
-  @override
   void initState() {
     requestPermissions();
     // WidgetsBinding.instance.addObserver(this);

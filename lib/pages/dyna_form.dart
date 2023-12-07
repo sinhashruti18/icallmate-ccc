@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'dart:convert';
+import 'package:ccc_app/service/cls_logs.dart';
 import 'package:ccc_app/service/login_apiservice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -394,6 +395,73 @@ class _CRMPageState extends State<CRMPage> {
     }
   }
 
+  var phoneid;
+
+  Future<void> leadCutomFieldDataMode1() async {
+    String uri = "${LoginService.cccIP}/getleadcustfield?";
+
+    // print("uri=$uri");
+    // if (WebsocketConnection.calltype == "INCOMING") {
+    //   phoneid = "0";
+    // } else {
+    //   phoneid = WebsocketConnection.custphoneid;
+    // }
+
+    // String uri = "https://192.168.68.220:8084/iTrackMate/gettaskfield";
+    var requestBody = {
+      "panel_leadid": widget.localleadid,
+      "phoneid": phoneid,
+      "mode": 1,
+    };
+    print("body= $requestBody");
+    print("uri= $uri");
+    ClsLogs.API_HIT(
+        "method : leadCutomFieldDataMode1(),\nurl= $uri,\nbody=$requestBody,\ndate= ${DateTime.now()}");
+    try {
+      var headers = {"Content-type": "application/json"};
+
+      final response = await http.post(Uri.parse(uri),
+          headers: headers, body: utf8.encode(json.encode(requestBody)));
+      var message = jsonDecode(response.body);
+      print("crm data${response.body}");
+
+      if (response.statusCode == 200) {
+        var valueString = message['value'];
+        var valueData = jsonDecode(valueString);
+        var values = valueData['value'];
+        print("values=$values");
+        ClsLogs.API_SUCCESS(
+            "method: leadCutomFieldDataMode1(),\nurl= $uri,\nbody: $requestBody",
+            "response:${response.body} ,\ndate:${DateTime.now()}");
+
+        setState(() {
+          for (var fieldText in fieldTexts) {
+            var fieldName = fieldText.fld_FieldName.toLowerCase();
+            print("fieldtext= $fieldName");
+
+            if (values.containsKey(fieldName)) {
+              fieldText.controller.text = values[fieldName];
+              print("values= ${values[fieldName]}");
+            } else {
+              fieldText.controller.text = '';
+            }
+          }
+          // if (message['value']['statusID'] != null) {
+          //   status_dropdown = message['value']['statusID'];
+          // }
+        });
+
+        var status = message['status'];
+        print("status= $status");
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      ClsLogs.API_FAILURE(
+          "method: leadCutomFieldDataMode1(),url: $uri,body: $requestBody,exception:$e,date:${DateTime.now()}");
+    }
+  }
+
   Widget buildFieldText(int index) {
     if (index < fieldTexts.length) {
       final fieldText = fieldTexts[index];
@@ -708,6 +776,7 @@ class _CRMPageState extends State<CRMPage> {
               ),
               GestureDetector(
                 onTap: () {
+                  dispose();
                   // updateTask();
                   // _stopRecording();
                 },
